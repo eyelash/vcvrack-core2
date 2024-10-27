@@ -44,3 +44,9 @@
 [submodule "dep/simde"]
 	path = dep/simde
 	url = https://github.com/simd-everywhere/simde.git
+[submodule "plugins/Fundamental"]
+	path = plugins/Fundamental
+	url = https://github.com/VCVRack/Fundamental.git
+[submodule "plugins/surge-rack"]
+	path = plugins/surge-rack
+	url = https://github.com/eyelash/surge-rack.git
