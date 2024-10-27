@@ -1,0 +1,50 @@
+name: build
+on:
+  push:
+    tags: ['v*']
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - run: sudo apt-get update && sudo apt-get install xorg-dev libasound2-dev libjack-jackd2-dev libpulse-dev markdown
+      - run: make dep
+      - run: make
+      - run: make -C plugins/Fundamental
+      - run: make -C plugins/Fundamental dist
+      - run: make dist
+      - run: make package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RackFree-2.6.6-lin-x64
+          path: dist/RackFree-2.6.6-lin-x64.zip
+
+      # Audible Instruments
+      - run: make -C plugins/AudibleInstruments
+      - run: make -C plugins/AudibleInstruments dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AudibleInstruments-2.0.0-lin-x64
+          path: plugins/AudibleInstruments/dist/AudibleInstruments-2.0.0-lin-x64.vcvplugin
+
+      # Valley
+      - run: make -C plugins/ValleyRackFree
+      - run: make -C plugins/ValleyRackFree dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Valley-2.4.5-lin-x64
+          path: plugins/ValleyRackFree/dist/Valley-2.4.5-lin-x64.vcvplugin
+
+      # Surge XT
+      - working-directory: plugins/surge-rack
+        run: make dep
+      - working-directory: plugins/surge-rack
+        run: make
+      - working-directory: plugins/surge-rack
+        run: make dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SurgeXTRack-2.2.5.0-lin-x64
+          path: plugins/surge-rack/dist/SurgeXTRack-2.2.5.0-lin-x64.vcvplugin
