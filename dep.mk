@@ -16,7 +16,7 @@ ifdef CROSS_COMPILE
 endif
 
 ifdef ARCH_X64
-	DEP_FLAGS += -march=nehalem
+	DEP_FLAGS += -march=nocona
 endif
 ifdef ARCH_ARM64
 	DEP_FLAGS += -march=armv8-a+fp+simd
