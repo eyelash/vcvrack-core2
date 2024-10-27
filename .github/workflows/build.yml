@@ -1,0 +1,29 @@
+name: build
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - run: sudo apt-get update && sudo apt-get install xorg-dev libasound2-dev libjack-jackd2-dev libpulse-dev markdown
+      - run: make dep
+      - run: make
+      - run: make
+        working-directory: plugins/Fundamental
+      - run: make dist
+        working-directory: plugins/Fundamental
+      - run: make dep
+        working-directory: plugins/surge-rack
+      - run: make dist
+        working-directory: plugins/surge-rack
+      - run: make dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RackFree-2.5.2-lin-x64
+          path: dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SurgeXTRack-2.2.5.0-lin-x64
+          path: plugins/surge-rack/dist/SurgeXTRack-2.2.5.0-lin-x64.vcvplugin
