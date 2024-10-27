@@ -27,7 +27,7 @@ endif
 
 # Architecture-independent flags
 ifdef ARCH_X64
-	FLAGS += -march=nehalem
+	FLAGS += -march=core2
 endif
 ifdef ARCH_ARM64
 	FLAGS += -march=armv8-a+fp+simd
