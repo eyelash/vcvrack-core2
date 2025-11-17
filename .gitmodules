@@ -50,3 +50,6 @@
 [submodule "plugins/surge-rack"]
 	path = plugins/surge-rack
 	url = https://github.com/eyelash/surge-rack.git
+[submodule "plugins/AudibleInstruments"]
+	path = plugins/AudibleInstruments
+	url = https://github.com/VCVRack/AudibleInstruments.git
