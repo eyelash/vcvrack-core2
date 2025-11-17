@@ -183,7 +183,7 @@ DIST_SDK = Rack-SDK-$(RACK_VERSION)-$(ARCH_NAME).zip
 
 
 $(FUNDAMENTAL_FILENAME):
-	curl -o "$(FUNDAMENTAL_FILENAME)" "https://api.vcvrack.com/download?slug=Fundamental&version=$(FUNDAMENTAL_VERSION)&arch=$(ARCH_NAME)"
+	cp plugins/Fundamental/dist/"$(FUNDAMENTAL_FILENAME)" ./
 
 
 dist: $(TARGET) $(STANDALONE_TARGET) $(DIST_HTML) $(FUNDAMENTAL_FILENAME)
